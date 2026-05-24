@@ -5,7 +5,7 @@ const doc = {
     title: 'My API',
     description: 'Store DB API documentation'
   },
-  host: 'https://storedb-wyw9.onrender.com/',
+  host: 'https://storedb-wyw9.onrender.com',
   schemes: ['http']
 };
 
