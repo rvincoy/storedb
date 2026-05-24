@@ -6,7 +6,7 @@ const doc = {
     description: 'Store DB API documentation'
   },
   host: 'https://storedb-wyw9.onrender.com',
-  schemes: ['http']
+  schemes: ['https']
 };
 
 const outputFile = './swagger.json';
