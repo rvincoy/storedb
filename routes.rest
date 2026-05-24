@@ -1,0 +1,4 @@
+http://localhost:8080/products
+http://localhost:8080/products/6a1245c348eb68befab721a0
+http://localhost:8080/api-docs/
+
