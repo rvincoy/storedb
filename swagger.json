@@ -8,7 +8,7 @@
   "host": "https://storedb-wyw9.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/products/": {
