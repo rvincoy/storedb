@@ -35,6 +35,14 @@ const createProduct = async (req, res, next) => {
             Price: req.body.Price,
             Stock: req.body.Stock
         };
+        if (!product.ProductName || !product.Description || !product.Category || !product.Price || !product.Stock) {
+            res.status(400).json({ error: 'All fields are required.' });
+            return;
+        }
+        if (typeof product.Price !== 'number' || typeof product.Stock !== 'number') {
+            res.status(400).json({ error: 'Price and Stock must be numbers.' });
+            return;
+        }
         const result = await mongodb.getDb().db().collection('Products').insertOne(product);
         if (result.acknowledged) {
             res.status(201).json(result);
@@ -56,6 +64,14 @@ const updateProduct = async (req, res, next) => {
             Price: req.body.Price,
             Stock: req.body.Stock
         };
+        if (!product.ProductName || !product.Description || !product.Category || !product.Price || !product.Stock) {
+            res.status(400).json({ error: 'All fields are required.' });
+            return;
+        }
+        if (typeof product.Price !== 'number' || typeof product.Stock !== 'number') {
+            res.status(400).json({ error: 'Price and Stock must be numbers.' });
+            return;
+        }
         const result = await mongodb.getDb().db().collection('Products').replaceOne({ _id: productId }, product);
         if (result.acknowledged) {
             res.status(200).json(result);
