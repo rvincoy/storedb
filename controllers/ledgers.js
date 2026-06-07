@@ -36,14 +36,19 @@ const createLedger = async (req, res, next) => {
             CoGS: req.body.CoGS,
             Quantity: req.body.Quantity,
             Price: req.body.Price,
-            TotalPrice: req.body.TotalPrice
+            TotalPrice: req.body.TotalPrice,
+            DateOfPurchase: req.body.DateOfPurchase
         };
-        if (!ledger.ProoductID || !ledger.ProductName || !ledger.Description || !ledger.Category || !ledger.CoGS || !ledger.Quantity || !ledger.Price || !ledger.TotalPrice) {
+        if (!ledger.ProoductID || !ledger.ProductName || !ledger.Description || !ledger.Category || !ledger.CoGS || !ledger.Quantity || !ledger.Price || !ledger.TotalPrice || !ledger.DateOfPurchase) {
             res.status(400).json({ error: 'All fields are required.' });
             return;
         }
         if (typeof ledger.CoGS !== 'number' || typeof ledger.Quantity !== 'number' || typeof ledger.Price !== 'number' || typeof ledger.TotalPrice !== 'number') {
             res.status(400).json({ error: 'CoGS, Quantity, Price, and TotalPrice must be numbers.' });
+            return;
+        }
+        if (isNaN(Date.parse(ledger.DateOfPurchase))) {
+            res.status(400).json({ error: 'DateOfPurchase must be a valid date.' });
             return;
         }
         const result = await mongodb.getDb().db().collection('Ledgers').insertOne(ledger);
@@ -68,14 +73,19 @@ const updateLedger = async (req, res, next) => {
             CoGS: req.body.CoGS,
             Quantity: req.body.Quantity,
             Price: req.body.Price,
-            TotalPrice: req.body.TotalPrice
+            TotalPrice: req.body.TotalPrice,
+            DateOfPurchase: req.body.DateOfPurchase
         };
-        if (!ledger.ProoductID || !ledger.ProductName || !ledger.Description || !ledger.Category || !ledger.CoGS || !ledger.Quantity || !ledger.Price || !ledger.TotalPrice) {
+        if (!ledger.ProoductID || !ledger.ProductName || !ledger.Description || !ledger.Category || !ledger.CoGS || !ledger.Quantity || !ledger.Price || !ledger.TotalPrice || !ledger.DateOfPurchase) {
             res.status(400).json({ error: 'All fields are required.' });
             return;
         }
         if (typeof ledger.CoGS !== 'number' || typeof ledger.Quantity !== 'number' || typeof ledger.Price !== 'number' || typeof ledger.TotalPrice !== 'number') {
             res.status(400).json({ error: 'CoGS, Quantity, Price, and TotalPrice must be numbers.' });
+            return;
+        }
+        if (isNaN(Date.parse(ledger.DateOfPurchase))) {
+            res.status(400).json({ error: 'DateOfPurchase must be a valid date.' });
             return;
         }
         const result = await mongodb.getDb().db().collection('Ledgers').replaceOne({ _id: ledgerId }, ledger);
