@@ -203,6 +203,9 @@
                 },
                 "TotalPrice": {
                   "example": "any"
+                },
+                "DateOfPurchase": {
+                  "example": "any"
                 }
               }
             }
@@ -281,6 +284,9 @@
                   "example": "any"
                 },
                 "TotalPrice": {
+                  "example": "any"
+                },
+                "DateOfPurchase": {
                   "example": "any"
                 }
               }
